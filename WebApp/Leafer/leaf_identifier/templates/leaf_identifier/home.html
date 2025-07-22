@@ -1,0 +1,19 @@
+{% extends 'leaf_identifier/base.html' %}
+{% block content %}
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+  <a href="{% url 'trivia' %}" class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition text-center">
+    <h2 class="text-xl font-bold mb-2">🌿 Trivia</h2>
+    <p>Learn fun facts about plants!</p>
+  </a>
+  
+  <a href="{% url 'run_quiz' %}" class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition text-center">
+    <h2 class="text-xl font-bold mb-2">📝 Quiz</h2>
+    <p>Test your plant knowledge!</p>
+  </a>
+  
+  <a href="{% url 'blogs' %}" class="bg-white p-6 rounded-lg shadow hover:shadow-xl transition text-center">
+    <h2 class="text-xl font-bold mb-2">📖 Blogs</h2>
+    <p>Read about plant care tips.</p>
+  </a>
+</div>
+{% endblock %}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrfmiddleware" content="{{ csrf_token }}">
+  <title>{% block title %}Leafer{% endblock %}</title>
+  
+  <script src="https://cdn.tailwindcss.com "></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4CAF50',     
+            secondary: '#8BC34A',
+            accent: '#FFC107',
+            background: '#F8F9FA',
+          },
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="bg-background min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="bg-primary text-white shadow-md">
+  <div class="container mx-auto px-4 py-4">
+    <div class="flex flex-wrap justify-between items-center">
+      <!-- Logo -->
+      <h1 class="text-2xl font-serif mb-2 sm:mb-0">🌿 Leafer</h1>
+
+      <!-- Authenticated User Dropdown & Notifications -->
+      {% if request.user.is_authenticated %}
+        <div class="flex items-center space-x-4">
+          <!-- Notifications Bell -->
+          <a href="{% url 'notifications' %}" class="relative touch-manipulation">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white hover:text-yellow-200" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+            <span class="sr-only">View Notifications</span>
+
+           {% with unread=unread_notifications %}
+  {% if unread > 0 %}
+    <span class="absolute top-0 right-0 inline-block w-4 h-4 bg-red-500 text-white text-xs font-bold rounded-full text-center">
+      {{ unread }}
+    </span>
+  {% endif %}
+{% endwith %}
+          </a>
+
+          <!-- User Dropdown -->
+          <div class="relative inline-block text-left">
+            <div>
+              <button type="button"
+                      class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-transparent rounded-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary touch-manipulation"
+                      id="user-menu-button"
+                      aria-expanded="true"
+                      aria-haspopup="true">
+                {{ user.username }}
+                <svg class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                     aria-hidden="true">
+                  <path fill-rule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Dropdown menu -->
+            <div class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden"
+                 id="user-dropdown"
+                 role="menu"
+                 aria-orientation="vertical"
+                 aria-labelledby="user-menu-button"
+                 tabindex="-1">
+              <div class="py-1" role="none">
+                <!-- User Info -->
+                <p class="block px-4 py-2 text-sm text-gray-700 bg-gray-100" role="menuitem" tabindex="-1">
+                  {{ user.username }}<br>
+                  <span class="text-xs text-gray-500">Score: {{ user.score.total }} | Role: {{ user.profile.role }}</span>
+                </p>
+
+                <!-- Change Password Link -->
+                <a href="{% url 'change_password' %}"
+                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                   role="menuitem"
+                   tabindex="-1">
+                  Change Password
+                </a>
+
+                <!-- Logout Form -->
+                <form method="post" action="{% url 'logout' %}"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      role="menuitem"
+                      tabindex="-1">
+                  {% csrf_token %}
+                  <button type="submit" class="text-left w-full">Logout</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <!-- Guest Login/Register Buttons -->
+        <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm">
+          <a href="{% url 'login' %}"
+             class="px-4 py-1 bg-blue-600 hover:bg-blue-700 rounded transition text-white">Login</a>
+          <a href="{% url 'register' %}"
+             class="px-4 py-1 bg-green-600 hover:bg-green-700 rounded transition text-white">Register</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</header>
+
+<!-- Navigation -->
+<nav class="bg-secondary text-white shadow">
+  <div class="container mx-auto px-4">
+    <ul class="flex flex-wrap gap-2 py-2">
+      <li>
+        <a href="/" class="px-4 py-1 bg-opacity-80 hover:bg-opacity-100 bg-white text-primary rounded-full transition inline-block">
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'upload' %}" class="px-4 py-1 bg-opacity-80 hover:bg-opacity-100 bg-white text-primary rounded-full transition inline-block">
+          Upload Image
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'blogs' %}" class="px-4 py-1 bg-opacity-80 hover:bg-opacity-100 bg-white text-primary rounded-full transition inline-block">
+          Blogs
+        </a>
+      </li>
+<!-- base.html -->
+{% if user.profile.role == "admin" %}
+  <li>
+    <a href="{% url 'view_reports' %}" class="px-4 py-1 bg-opacity-80 hover:bg-opacity-100 bg-white text-primary rounded-full transition inline-block">
+      See Reports
+    </a>
+  </li>
+{% endif %}
+
+
+      {% if user.profile.role == "analyst" %}
+      
+        <li>
+          <a href="{% url 'show_all' %}" class="px-4 py-1 bg-opacity-80 hover:bg-opacity-100 bg-white text-primary rounded-full transition inline-block">
+            Show Leafs
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main class="container mx-auto px-4 py-8 flex-grow">
+  {% block content %}
+  {% endblock %}
+</main>
+
+<!-- Toast Notification -->
+{% if messages %}
+  <div aria-live="polite" aria-atomic="true" class="fixed inset-0 flex items-start justify-center pointer-events-none z-50">
+    <div id="live-region" class="sr-only" aria-live="assertive"></div>
+  </div>
+
+  {% for message in messages %}
+    <div class="toast show {{ message.tags }}">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+
+<!-- Toast Styling -->
+<style>
+  .toast {
+    visibility: hidden;
+    min-width: 250px;
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+    border-radius: 4px;
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.5s, visibility 0.5s;
+  }
+
+  .toast.show {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .toast.success {
+    background-color: #085e1c; /* green */
+  }
+
+  .toast.error {
+    background-color: #dc3545; /* red */
+  }
+
+  .toast.warning {
+    background-color: #ffc107; /* yellow */
+    color: #000;
+  }
+
+  .toast.info {
+    background-color: #17a2b8; /* blue */
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+</style>
+
+<!-- JavaScript -->
+<script>
+  // Toggle dropdown visibility
+  document.getElementById('user-menu-button')?.addEventListener('click', function () {
+    const dropdown = document.getElementById('user-dropdown');
+    dropdown.classList.toggle('hidden');
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function (event) {
+    const dropdown = document.getElementById('user-dropdown');
+    const button = document.getElementById('user-menu-button');
+
+    if (!button?.contains(event.target) && !dropdown?.contains(event.target)) {
+      dropdown?.classList.add('hidden');
+    }
+  });
+
+  // Auto-hide toast notifications
+  document.addEventListener("DOMContentLoaded", function () {
+    var toasts = document.querySelectorAll(".toast");
+    var liveRegion = document.getElementById('live-region');
+
+    toasts.forEach(function (toast) {
+      setTimeout(function () {
+        toast.classList.remove("show");
+      }, 3000); // Reduced from 4500ms to 3000ms
+
+      // Announce message to screen readers
+      if (liveRegion) {
+        const msg = document.createElement('div');
+        msg.textContent = toast.textContent;
+        liveRegion.appendChild(msg);
+      }
+    });
+  });
+</script>
+
+<!-- Footer -->
+<footer class="bg-primary text-white text-center py-4 mt-auto">
+  <p>&copy; 2025 Leafer — Open Source it ... <br>Something went wrong ? email us leaferleafer9@gmail.com</p>
+</footer>
+</body>
+</html>

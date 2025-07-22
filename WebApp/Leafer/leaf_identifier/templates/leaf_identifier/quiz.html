@@ -1,0 +1,28 @@
+{% extends 'leaf_identifier/base.html' %}
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow">
+  <h1 class="text-2xl font-bold mb-6 text-primary">🌱 Answer the Questions</h1>
+  
+  <form method="post" action="{% url 'process_quiz' %}" class="space-y-6">
+    {% csrf_token %}
+    
+    {% for item in quiz_data %}
+    <div class="border-b pb-4 mb-4">
+      <p class="font-medium mb-2">{{ item.question_text }}</p>
+      {% for key, value in item.answers.items %}
+      <label class="flex items-center space-x-2 mb-2">
+        <input type="radio" name="question_{{ item.question_number }}" value="{{ key }}" 
+               class="form-radio h-5 w-5 text-primary">
+        <span>{{ value }}</span>
+      </label>
+      {% endfor %}
+    </div>
+    {% endfor %}
+    
+    <button type="submit" 
+      class="bg-primary text-white px-6 py-2 rounded hover:bg-opacity-90 transition">
+      Submit Answers
+    </button>
+  </form>
+</div>
+{% endblock %}

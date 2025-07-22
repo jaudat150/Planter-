@@ -1,0 +1,130 @@
+<mxfile host="Electron" modified="2025-07-04T15:05:50.446Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.0.4 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="0r1zareQ3W4sqintprkd" version="24.0.4" type="device">
+  <diagram name="Page-1" id="QD_JOMZgq2UKG0qrrXkf">
+    <mxGraphModel dx="1276" dy="606" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LiLLFiUzIS2DZXrTLX4k-1" target="LiLLFiUzIS2DZXrTLX4k-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-1" value="start" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="50" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-2" value="end" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="890" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="LiLLFiUzIS2DZXrTLX4k-3" target="LiLLFiUzIS2DZXrTLX4k-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-3" value="fetch reqeust" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="60" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-9" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LiLLFiUzIS2DZXrTLX4k-5" target="LiLLFiUzIS2DZXrTLX4k-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-27" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="LiLLFiUzIS2DZXrTLX4k-5" target="LiLLFiUzIS2DZXrTLX4k-17">
+          <mxGeometry x="-0.7101" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-5" value="user is authenticated" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="525" y="35" width="110" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="LiLLFiUzIS2DZXrTLX4k-8" target="LiLLFiUzIS2DZXrTLX4k-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="610" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-8" value="get the number of unread messages" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="710" y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="LiLLFiUzIS2DZXrTLX4k-17" target="LiLLFiUzIS2DZXrTLX4k-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-17" value="get random 20 trivia facts from the file" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-29" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="LiLLFiUzIS2DZXrTLX4k-19" target="LiLLFiUzIS2DZXrTLX4k-22">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="350" y="230" />
+              <mxPoint x="350" y="270" />
+              <mxPoint x="465" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-37" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="LiLLFiUzIS2DZXrTLX4k-19" target="LiLLFiUzIS2DZXrTLX4k-34">
+          <mxGeometry x="-0.8584" relative="1" as="geometry">
+            <mxPoint x="100" y="830" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="175" y="230" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-19" value="request is get and&amp;nbsp;&lt;div&gt;the user&amp;nbsp;&lt;/div&gt;&lt;div&gt;clicked generate&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="165" width="150" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LiLLFiUzIS2DZXrTLX4k-22" target="LiLLFiUzIS2DZXrTLX4k-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-22" value="generate a prompt for the AI model&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="405" y="350" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LiLLFiUzIS2DZXrTLX4k-23" target="LiLLFiUzIS2DZXrTLX4k-25">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="465" y="510" />
+              <mxPoint x="290" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-23" value="web scrape using the prompt generated before&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="405" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-31" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LiLLFiUzIS2DZXrTLX4k-25" target="LiLLFiUzIS2DZXrTLX4k-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-36" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="LiLLFiUzIS2DZXrTLX4k-25" target="LiLLFiUzIS2DZXrTLX4k-34">
+          <mxGeometry x="-0.7284" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="175" y="590" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-25" value="error during web scraping" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="235" y="540" width="110" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LiLLFiUzIS2DZXrTLX4k-30" target="LiLLFiUzIS2DZXrTLX4k-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-30" value="use the local LLM with the same prompt from before&amp;nbsp;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="420" y="560" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LiLLFiUzIS2DZXrTLX4k-32" target="LiLLFiUzIS2DZXrTLX4k-34">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="710" />
+              <mxPoint x="175" y="710" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-32" value="strip answers into lines" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="420" y="640" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="LiLLFiUzIS2DZXrTLX4k-34" target="LiLLFiUzIS2DZXrTLX4k-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="175" y="850" />
+              <mxPoint x="360" y="850" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LiLLFiUzIS2DZXrTLX4k-34" value="render trivia page" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="115" y="770" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

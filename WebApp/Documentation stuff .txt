@@ -1,0 +1,23 @@
+used rapid development : 
+at first i worked on the model till it worked 
+after that i started creating the UI for the app so i can decide what features i need 
+implemented the upload image first for any image 
+tested the DB structure in a haste 
+integrated the model into the app 
+hardcoded the trivia then used them in the app 
+used an AI model to generate questions in a script 
+used another script to take the output of the first script and convert it into a suitable data structure which is a dict ( hashmap )l
+then combined both in a single function 
+created blogs so users can talk about plants 
+-right before implmenting them in the webapp 
+-added scoring system 
+-made the trivia ai generated after testing the output using human analysis method 
+-made blogs more pleasing by allowing users to check the blog poster's account and views other blogs 
+
+--problem and its solution: 
+1)using webscraping on qwen makes it generate the same output for the prompt each time so i used a seed in the prompt to trick the ai to change the output.
+2)didn't know how much an answer would take to be fully generated so i waited for the like to appear before copying the answer to my list.
+3) image need to be close after uploading so i can move it using move_image but i didn't know that before so i was trying to close the image in the move_image function which obviously didn't work 
+
+development method is : hybrid of rapid/functional decomposition/spiral
+which is popular among solo developers and small teams aiming for speed while breaking down a big system into smaller parts and testing each at a time. 

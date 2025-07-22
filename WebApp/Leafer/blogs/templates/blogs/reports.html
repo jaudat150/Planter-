@@ -1,0 +1,161 @@
+<!-- templates/blogs/reports.html -->
+{% extends "leaf_identifier/base.html" %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+  <h2 class="text-3xl font-bold text-primary mb-6">Reports</h2>
+
+  {% if reports %}
+    <div class="space-y-6" id="reports-list">
+      {% for report in reports %}
+        <div id="report-{{ report.id }}" class="bg-white shadow-md rounded-lg p-6 border border-gray-200">
+          <div class="mb-4">
+            <p class="font-semibold text-gray-700">Reported by: <span class="text-primary">{{ report.user.username }}</span></p>
+            <p class="text-gray-800 mt-1">{{ report.reason }}</p>
+            <p class="text-sm text-gray-500 mt-2">at: {{ report.timestamp|date:"Y-m-d H:i" }}</p>
+          </div>
+
+          {% if report.post %}
+            <p class="text-sm text-gray-600 mt-2">Post: <strong>"{{ report.post.title }}"</strong></p>
+          {% elif report.comment %}
+            <p class="text-sm text-gray-600 mt-2">Comment on: <strong>"{{ report.comment.post.title }}"</strong></p>
+          {% endif %}
+
+          <!-- Action Buttons -->
+          <div class="mt-4 flex gap-3">
+            <button type="button"
+                    class="send-report-btn px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition focus:outline-none focus:ring-2 focus:ring-red-500"
+                    data-report-id="{{ report.id }}">
+              Send Report
+            </button>
+
+            <button type="button"
+                    class="ignore-report-btn px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition focus:outline-none focus:ring-2 focus:ring-gray-400"
+                    data-report-id="{{ report.id }}">
+              Ignore
+            </button>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-gray-600 mt-4">No reports found.</p>
+  {% endif %}
+</div>
+
+<!-- Styled Toast Notification -->
+<div id="report-message" class="hidden fixed bottom-4 right-4 bg-white px-4 py-3 rounded shadow-md z-50 max-w-sm border-l-4 flex items-center transition-all duration-300 ease-in-out transform translate-y-0 opacity-100">
+  <div id="message-icon" class="mr-3"></div>
+  <div id="message-text" class="flex-1 font-medium"></div>
+  <button onclick="hideMessage()" class="ml-2 text-gray-400 hover:text-gray-600 focus:outline-none">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </button>
+</div>
+
+<script>
+function hideMessage() {
+  const messageBox = document.getElementById("report-message");
+  messageBox.classList.add('hidden');
+  // Reset styles for next use
+  messageBox.classList.remove('border-green-500', 'border-red-500');
+  document.getElementById("message-icon").innerHTML = '';
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const csrftoken = document.querySelector('[name=csrfmiddleware]').content;
+  const messageBox = document.getElementById("report-message");
+  const messageText = document.getElementById("message-text");
+  const messageIcon = document.getElementById("message-icon");
+
+  function showMessage(message, isSuccess = true) {
+    // Set message content and styling
+    messageText.textContent = message;
+    messageBox.classList.remove('hidden');
+    
+    // Set icon and color based on success/failure
+    if (isSuccess) {
+      messageBox.classList.add('border-green-500');
+      messageIcon.innerHTML = `
+        <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+      `;
+    } else {
+      messageBox.classList.add('border-red-500');
+      messageIcon.innerHTML = `
+        <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      `;
+    }
+
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+      messageBox.classList.add('hidden');
+      // Reset for next message
+      messageBox.classList.remove('border-green-500', 'border-red-500');
+      messageIcon.innerHTML = '';
+    }, 5000);
+  }
+
+  // Handle Ignore Report
+  document.querySelectorAll(".ignore-report-btn").forEach(button => {
+    button.addEventListener("click", function () {
+      const reportId = this.dataset.reportId;
+
+      fetch("{% url 'ignore_report' 0 %}".replace('0', reportId), {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": csrftoken,
+          "X-Requested-With": "XMLHttpRequest"
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          const reportElement = document.getElementById(`report-${reportId}`);
+          if (reportElement) reportElement.remove();
+          showMessage(data.message);
+        } else {
+          showMessage(data.message, false);
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        showMessage("An error occurred while processing your request.", false);
+      });
+    });
+  });
+
+  // Handle Send Report
+  document.querySelectorAll(".send-report-btn").forEach(button => {
+    button.addEventListener("click", function () {
+      const reportId = this.dataset.reportId;
+
+      fetch("{% url 'send_report' 0 %}".replace('0', reportId), {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": csrftoken,
+          "X-Requested-With": "XMLHttpRequest"
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          const reportElement = document.getElementById(`report-${reportId}`);
+          if (reportElement) reportElement.remove();
+          showMessage(data.message);
+        } else {
+          showMessage(data.message, false);
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        showMessage("An error occurred while submitting the report.", false);
+      });
+    });
+  });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'leaf_identifier/base.html' %}
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow">
+  <h1 class="text-2xl font-bold mb-6 text-primary">🌱 Plant Quiz</h1>
+  
+  <form action="{% url 'run_quiz' %}" method="post" class="space-y-4">
+    {% csrf_token %}
+    
+    <div>
+      <label for="level" class="block mb-2 font-medium">Select Difficulty</label>
+      <select name="level" id="level" required 
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+        <option value="">-- Select Difficulty --</option>
+        <option value="easy">Easy (3 points)</option>
+        <option value="mid">Mid (10 points)</option>
+        <option value="hard">Hard (20 points)</option>
+      </select>
+    </div>
+    
+    <button type="submit" 
+      class="bg-primary text-white px-6 py-2 rounded hover:bg-opacity-90 transition">
+      Start Quiz
+    </button>
+  </form>
+</div>
+{% endblock %}

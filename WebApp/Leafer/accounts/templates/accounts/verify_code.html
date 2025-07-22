@@ -1,0 +1,71 @@
+{% extends "leaf_identifier/base.html" %}
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-background py-12 px-4">
+  <div class="max-w-md w-full bg-white rounded-lg shadow-md p-8">
+    <!-- Page Title -->
+    <div class="text-center mb-8">
+      <div class="flex justify-center mb-4">
+        <svg class="w-12 h-12 text-green-100 p-2 rounded-full bg-secondary bg-opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+      </div>
+      <h2 class="text-2xl font-bold text-primary">Enter Verification Code</h2>
+      <p class="text-gray-500 mt-2">We've sent a 6-digit code to your email</p>
+    </div>
+
+    <!-- Form -->
+    <form method="post" class="space-y-6">
+      {% csrf_token %}
+      
+      <!-- Code Input -->
+      <div class="space-y-1">
+        <label for="code" class="block text-sm font-medium text-gray-700">
+          Verification Code
+        </label>
+        <div class="relative">
+          <input type="text" name="code" maxlength="6" required id="code"
+            class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-secondary transition text-center text-xl tracking-widest"
+            placeholder="• • • • • •" pattern="\d{6}">
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-gray-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.6 2.4A9 9 0 114.4 7.6"></path>
+            </svg>
+          </div>
+        </div>
+        <p class="text-xs text-gray-500 mt-1 text-center">
+          Enter the 6-digit code from your inbox
+        </p>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit"
+        class="w-full bg-primary hover:bg-opacity-90 text-white font-medium py-2 px-4 rounded-md transition duration-200 flex items-center justify-center group">
+        <svg class="w-5 h-5 mr-2 transform group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l7-7-7-7m5 12H9"></path>
+        </svg>
+        Verify Email
+      </button>
+    </form>
+
+    <!-- Resend Link -->
+    <div class="mt-6 text-center">
+      <p class="text-sm text-gray-600">
+        Didn't receive the code?
+        <a href="#" class="text-primary hover:text-opacity-80 font-medium">
+          Resend Code
+        </a>
+      </p>
+    </div>
+
+    <!-- Back to Home -->
+    <div class="mt-8 text-center">
+      <a href="/" class="text-sm text-primary hover:underline flex items-center justify-center mx-auto">
+        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+         Back to Home
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

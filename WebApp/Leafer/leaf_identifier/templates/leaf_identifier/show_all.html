@@ -1,0 +1,181 @@
+{% extends "leaf_identifier/base.html" %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+  <h2 class="text-2xl font-bold mb-6 text-primary">🌿 Uploaded Leafs</h2>
+
+  <!-- Search Bar -->
+  <div class="mb-4">
+    <input id="search-input" type="text" placeholder="Search by Diagnosis "
+           class="w-full p-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-primary">
+  </div>
+
+  <!-- Table -->
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow" id="leaf-table">
+      <thead class="bg-secondary text-white">
+        <tr>
+          <th class="py-3 px-4 border-b">Image</th>
+          <th class="py-3 px-4 border-b">Action</th>
+          <th class="py-3 px-4 border-b">Diagnosis</th>
+          <th class="py-3 px-4 border-b">Confidence</th>
+          <th class="py-3 px-4 border-b">ID</th>
+        </tr>
+      </thead>
+      <tbody id="leaf-table-body">
+        {% if leafs %}
+          {% for leaf in leafs %}
+          <tr id="leaf-{{ leaf.id }}" class="hover:bg-gray-50">
+            <td class="py-2 px-4 border-b">
+              <img src="{{ leaf.img.url }}" alt="Leaf" class="h-16 object-cover rounded">
+            </td>
+            <td class="py-2 px-4 border-b">
+              <div class="flex flex-wrap gap-2">
+                <button class="move-btn bg-primary text-white px-3 py-1 rounded text-sm hover:bg-opacity-90"
+                        data-action="right" data-id="{{ leaf.id }}">
+                  Right
+                </button>
+                <select class="border border-gray-300 rounded px-2 py-1 text-sm diagnosis-select" data-id="{{ leaf.id }}">
+                  <option>Select Diagnosis</option>
+                  {% for diagnosis in diagnoses %}
+                    <option value="{{ diagnosis }}" {% if diagnosis == leaf.leaf_diagnose %}selected{% endif %}>
+                      {{ diagnosis }}
+                    </option>
+                  {% endfor %}
+                </select>
+                <button class="move-btn bg-secondary text-white px-3 py-1 rounded text-sm hover:bg-opacity-90"
+                        data-action="correct_label" data-id="{{ leaf.id }}">
+                  Correct Label
+                </button>
+              </div>
+            </td>
+            <td class="py-2 px-4 border-b" data-diagnosis>{{ leaf.leaf_diagnose }}</td>
+            <td class="py-2 px-4 border-b" data-confidence>{{ leaf.confidence|floatformat:2 }}%</td>
+            <td class="py-2 px-4 border-b" data-id>{{ leaf.id }}</td>
+          </tr>
+          {% endfor %}
+        {% else %}
+          <tr id="no-leafs">
+            <td colspan="5" class="py-4 text-center text-gray-500">No leafs found.</td>
+          </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded hidden transition duration-300 ease-in-out">
+  <span id="toast-message"></span>
+</div>
+
+<!-- AJAX SCRIPT -->
+<script>
+function getCSRFToken() {
+    const cookies = document.cookie.split("; ");
+    for (const cookie of cookies) {
+        const [name, value] = cookie.split("=");
+        if (name === "csrftoken") return value;
+    }
+    return null;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchInput = document.getElementById("search-input");
+    const rows = document.querySelectorAll("#leaf-table-body tr");
+
+    searchInput?.addEventListener("input", function () {
+        const query = this.value.trim();
+        const terms = query.toLowerCase().split(/\s+/).filter(term => term); // Split by spaces, remove empty
+
+        rows.forEach(row => {
+            const idCell = row.querySelector("[data-id]");
+            const diagnosisCell = row.querySelector("[data-diagnosis]");
+            const id = idCell?.textContent.trim().toLowerCase() || "";
+            const diagnosis = diagnosisCell?.textContent.trim().toLowerCase() || "";
+
+            if (!terms.length) {
+                row.style.display = ""; // Show all if empty
+                return;
+            }
+
+            // Match if any term matches ID or diagnosis
+            const matches = terms.some(term => id.includes(term) || diagnosis.includes(term));
+            row.style.display = matches ? "" : "none";
+        });
+    });
+
+    // AJAX Move Button Logic
+    document.querySelectorAll(".move-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            const row = this.closest("tr");
+            const id = this.dataset.id;
+            const action = this.dataset.action;
+
+            const formData = new FormData();
+            formData.append("action", action);
+
+            if (action === "correct_label") {
+                const diagnosisSelect = row.querySelector(".diagnosis-select");
+                const selectedDiagnosis = diagnosisSelect.value;
+                if (!selectedDiagnosis || selectedDiagnosis === "Select Diagnosis") {
+                    alert("Please select a diagnosis.");
+                    return;
+                }
+                formData.append("diagnosis", selectedDiagnosis);
+            }
+
+            fetch(`/move-image/${id}/`, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": getCSRFToken(),
+                    "X-Requested-With": "XMLHttpRequest"
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    row.classList.add("animate-fade-out");
+                    setTimeout(() => row.remove(), 300);
+                    showNotification(data.message);
+                    if (document.querySelectorAll("#leaf-table-body tr").length === 1) {
+                        document.getElementById("no-leafs").style.display = "table-row";
+                    }
+                } else {
+                    alert("Error: " + data.message);
+                }
+            })
+            .catch(err => console.error("AJAX Error:", err));
+        });
+    });
+});
+
+function showNotification(message) {
+    const toast = document.getElementById("toast");
+    const toastMessage = document.getElementById("toast-message");
+    toastMessage.textContent = message;
+    toast.classList.remove("hidden");
+    toast.classList.add("bg-green-500");
+    toast.style.display = "block";
+    setTimeout(() => {
+        toast.classList.add("opacity-0");
+        setTimeout(() => {
+            toast.classList.remove("opacity-0");
+            toast.classList.add("hidden");
+        }, 500);
+    }, 3000);
+}
+</script>
+
+<!-- Animations -->
+<style>
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-10px); }
+}
+.animate-fade-out {
+    animation: fadeOut 0.3s ease-in forwards;
+}
+</style>
+{% endblock %}

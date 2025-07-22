@@ -1,0 +1,61 @@
+{% extends 'leaf_identifier/base.html' %}
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
+  <!-- Result Header -->
+  <div class="text-center mb-6">
+    <h1 class="text-2xl font-bold text-primary flex items-center justify-center">
+      <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V4L8 3z"></path>
+      </svg>
+      Diagnosis Result
+    </h1>
+    <p class="text-sm text-gray-500 mt-1">Plant ID: {{ leaf.id }}</p>
+  </div>
+
+  <!-- Image Section -->
+  <div class="flex justify-center mb-6">
+    <div class="relative rounded-lg overflow-hidden shadow-lg">
+      <img src="{{ leaf.img.url }}" 
+           alt="Leaf Image" 
+           class="w-full h-auto max-h-96 object-cover"
+           loading="lazy">
+    </div>
+  </div>
+
+  <!-- Diagnosis Info -->
+  <div class="space-y-4">
+    <div class="bg-green-50 p-4 rounded-lg border border-green-100">
+      <h2 class="text-lg font-semibold text-secondary mb-2 flex items-center">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+        </svg>
+        Diagnosis
+      </h2>
+      <p class="text-gray-800">Detected: <span class="font-medium">{{ leaf.leaf_diagnose }}</span></p>
+      <p class="text-gray-800 mt-1">Confidence: 
+        <span class="font-medium {% if leaf.confidence|floatformat:0 >= 75 %}text-green-600{% else %}text-yellow-600{% endif %}">
+          {{ leaf.confidence|floatformat:2 }}%
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="mt-8 flex justify-center gap-4">
+    <a href="/" 
+       class="bg-primary hover:bg-opacity-90 text-white px-5 py-2 rounded transition flex items-center">
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+      </svg>
+      Back to Home
+    </a>
+    <a href="{% url 'upload' %}" 
+       class="bg-secondary hover:bg-opacity-90 text-white px-5 py-2 rounded transition flex items-center">
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+      </svg>
+      Upload Another
+    </a>
+  </div>
+</div>
+{% endblock %}

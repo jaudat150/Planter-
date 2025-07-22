@@ -1,0 +1,26 @@
+{
+    "class_names": [
+        "bacterial_spot",
+        "early_blight",
+        "healthy",
+        "late_blight",
+        "powdery_mildew",
+        "rust"
+    ],
+    "class_indices": {
+        "bacterial_spot": 0,
+        "early_blight": 1,
+        "healthy": 2,
+        "late_blight": 3,
+        "powdery_mildew": 4,
+        "rust": 5
+    },
+    "num_classes": 6,
+    "batch_size": 16,
+    "image_size": [
+        224,
+        224
+    ],
+    "best_val_accuracy": 0.6556016802787781,
+    "best_val_loss": 1.7011544704437256
+}

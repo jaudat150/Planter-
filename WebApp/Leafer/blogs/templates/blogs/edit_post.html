@@ -1,0 +1,160 @@
+{% extends "leaf_identifier/base.html" %}
+{% block content %}
+<div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md mt-12">
+  <!-- Page Title -->
+  <h2 class="text-2xl font-bold mb-8 text-primary flex items-center justify-center">
+    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+    </svg>
+    Edit Post
+  </h2>
+
+  <!-- Form -->
+  <form action="{% url 'edit_post' id=post.id %}" method="post" enctype="multipart/form-data" class="space-y-6">
+    {% csrf_token %}
+
+    <!-- Title -->
+    <div>
+      <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+      <input type="text" name="title" id="title" required 
+             value="{{ post.title }}"
+             class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-secondary transition">
+    </div>
+
+    <!-- Content -->
+    <div>
+      <label for="content" class="block text-sm font-medium text-gray-700 mb-1">Content</label>
+      <textarea name="content" id="content" rows="10" cols="50" required
+                class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-secondary transition">{{ post.content }}</textarea>
+    </div>
+
+    <!-- Image Upload -->
+    <div>
+      <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Upload New Image (Optional)</label>
+      <input type="file" name="image" id="image" accept="image/*"
+             class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
+                    file:rounded file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-secondary file:text-white
+                    hover:file:bg-opacity-90
+                    border border-gray-300 rounded-md cursor-pointer">
+      <p class="mt-1 text-xs text-gray-500">Supported formats: JPG, PNG</p>
+    </div>
+
+    <!-- Image Preview -->
+    <div class="image-preview hidden">
+      <h3 class="text-sm font-medium text-gray-700 mt-4 mb-2">Image Preview</h3>
+      <div class="relative inline-block">
+        <img src="" id="show_img" alt="Image preview" 
+             class="max-w-full h-auto rounded-lg shadow-sm border border-gray-200">
+        <button type="button" class="remove-image-btn absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 w-6 h-6 flex items-center justify-center hover:bg-red-600 transition hidden">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Existing Image -->
+    {% if post.image %}
+    <input type="hidden" name="remove_image" id="remove_image" value="0">
+    <div class="existing-image">
+      <h3 class="text-sm font-medium text-gray-700 mt-4 mb-2">Current Image</h3>
+      <div class="relative inline-block">
+        <img src="{{ post.image.url }}" alt="Uploaded image" 
+             class="max-w-full h-auto rounded-lg shadow-sm border border-gray-200">
+        <button type="button" class="remove-existing-btn absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 w-6 h-6 flex items-center justify-center hover:bg-red-600 transition">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Submit Button -->
+    <div class="pt-4">
+      <button type="submit"
+        class="w-full sm:w-auto bg-primary hover:bg-opacity-90 text-white px-6 py-2 rounded-md transition duration-200 flex items-center justify-center">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+        Update Post
+      </button>
+    </div>
+  </form>
+
+  <!-- Back Link -->
+  <div class="mt-6 text-center">
+    <a href="{% url 'post_list' %}" class="text-sm text-primary hover:underline flex items-center justify-center">
+      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+      </svg>
+      Back to Post List
+    </a>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+  const imgInput = document.getElementById('image');
+  const previewDiv = document.querySelector('.image-preview');
+  const previewImg = document.getElementById('show_img');
+  const removeBtn = document.querySelector('.remove-image-btn');
+  const existingImageDiv = document.querySelector('.existing-image');
+  const removeExistingBtn = document.querySelector('.remove-existing-btn');
+
+  // Image Preview
+  imgInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    
+    // Hide existing image if present
+    if (existingImageDiv) {
+      existingImageDiv.style.display = 'none';
+    }
+
+    if (file && file.type.startsWith('image/')) {
+      previewDiv.classList.remove('hidden');
+      
+      const reader = new FileReader();
+      previewImg.src = '/static/loader.gif'; // Optional loading spinner
+      
+      reader.onload = function(event) {
+        previewImg.src = event.target.result;
+        removeBtn.classList.remove('hidden');
+      };
+      
+      reader.onerror = function() {
+        console.error('Error reading file');
+      };
+      
+      reader.readAsDataURL(file);
+    } else {
+      previewDiv.classList.add('hidden');
+      removeBtn.classList.add('hidden');
+    }
+  });
+
+  // Remove New Image
+  if (removeBtn) {
+    removeBtn.addEventListener('click', () => {
+      imgInput.value = ''; // Clear file input
+      previewDiv.classList.add('hidden');
+      removeBtn.classList.add('hidden');
+      
+      if (existingImageDiv) {
+        existingImageDiv.classList.remove('hidden');
+      }
+    });
+  }
+
+  // Remove Existing Image
+  if (removeExistingBtn) {
+    removeExistingBtn.addEventListener('click', () => {
+      //if value is 1 backend removes the image 
+      document.getElementById('remove_image').value = '1';
+      existingImageDiv.style.display = 'none';
+    });
+  }
+</script>
+{% endblock %}

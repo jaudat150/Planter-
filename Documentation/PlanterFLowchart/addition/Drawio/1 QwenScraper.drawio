@@ -1,0 +1,174 @@
+<mxfile host="Electron" modified="2025-07-04T20:00:57.354Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.0.4 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="QV9Z3aiHeoS0dNvbptQB" version="24.0.4" type="device">
+  <diagram name="Page-1" id="VKt4ArU8Ef53JBAdtrKL">
+    <mxGraphModel dx="1110" dy="527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="R8O68PNxE0Waeue6p630-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-1" target="R8O68PNxE0Waeue6p630-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-1" value="start" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="60" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-2" target="R8O68PNxE0Waeue6p630-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-2" value="setup the browser to start scraping&amp;nbsp;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="70" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-4" target="R8O68PNxE0Waeue6p630-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-4" value="go to qwen website" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="70" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-6" target="R8O68PNxE0Waeue6p630-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="710" y="150" />
+              <mxPoint x="530" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-6" value="wait until chat input appear" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="70" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-13" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-8" target="R8O68PNxE0Waeue6p630-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-19" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-8" target="R8O68PNxE0Waeue6p630-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-8" value="logged in" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="180" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-12" target="R8O68PNxE0Waeue6p630-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-12" value="fill the chat input and press enter&amp;nbsp;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-14" target="R8O68PNxE0Waeue6p630-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-14" value="wait until send message appears again (finished generating)&amp;nbsp;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-16" target="R8O68PNxE0Waeue6p630-38">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="740" y="970" />
+              <mxPoint x="410" y="970" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-16" value="get lines of the response and add them to the list&amp;nbsp;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="665" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-18" target="R8O68PNxE0Waeue6p630-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-18" value="click on log in" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-20" target="R8O68PNxE0Waeue6p630-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-20" value="wait for &quot;continue with google&quot; to appear then click it&amp;nbsp;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-22" target="R8O68PNxE0Waeue6p630-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-22" value="wait for the chat input to appear then fill it with the prompt&amp;nbsp;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="400" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-25" target="R8O68PNxE0Waeue6p630-27">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="90" y="570" />
+              <mxPoint x="190" y="570" />
+              <mxPoint x="190" y="350" />
+              <mxPoint x="350" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-25" value="get lines of the response and add them to the list&amp;nbsp;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="490" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-35" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-27" target="R8O68PNxE0Waeue6p630-36">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="770" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="240" y="465" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-41" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-27" target="R8O68PNxE0Waeue6p630-29">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="475" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-27" value="error accured during&amp;nbsp;&lt;div&gt;waiting for&amp;nbsp;&lt;/div&gt;&lt;div&gt;the chat prompt&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="380" width="180" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-29" target="R8O68PNxE0Waeue6p630-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-29" value="wait for email page then fill it&amp;nbsp;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="550" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-31" target="R8O68PNxE0Waeue6p630-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-31" value="sleep for 10 seconds" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="625" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-33" target="R8O68PNxE0Waeue6p630-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-33" value="fill the password&amp;nbsp;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="705" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-36" target="R8O68PNxE0Waeue6p630-38">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="350" y="940" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="240" y="970" />
+              <mxPoint x="410" y="970" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-36" value="close the browser" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="640" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-38" value="end" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="990" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="R8O68PNxE0Waeue6p630-42" target="R8O68PNxE0Waeue6p630-44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-42" value="fill the chat input and press enter&amp;nbsp;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="790" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="R8O68PNxE0Waeue6p630-16">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470.0000000000002" y="885" as="sourcePoint" />
+            <mxPoint x="700.0000000000002" y="680" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="470" y="905" />
+              <mxPoint x="610" y="905" />
+              <mxPoint x="610" y="640" />
+              <mxPoint x="740" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R8O68PNxE0Waeue6p630-44" value="wait until send message appears again (finished generating)&amp;nbsp;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="870" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

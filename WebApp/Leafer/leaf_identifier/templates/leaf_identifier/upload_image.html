@@ -1,0 +1,64 @@
+{% extends 'leaf_identifier/base.html' %}
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+  <h1 class="text-2xl font-bold mb-6 text-primary flex items-center">
+    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+    </svg>
+    Upload Leaf Image
+  </h1>
+
+  <!-- Upload Form -->
+  <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data" class="space-y-6">
+    {% csrf_token %}
+
+    <!-- File Input -->
+    <div>
+      <label for="img" class="block text-sm font-medium text-gray-700 mb-2">Upload your leaf image</label>
+      <input type="file" name="img" id="img" accept="image/*" required
+        class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
+               file:rounded file:border-0
+               file:text-sm file:font-semibold
+               file:bg-secondary file:text-white
+               hover:file:bg-opacity-90
+               border border-gray-300 rounded-md cursor-pointer">
+      <p class="mt-2 text-xs text-gray-500">Supported formats: JPG, PNG</p>
+    </div>
+
+    <!-- Image Preview -->
+    <div class="flex justify-center">
+      <img id="preview" src="" alt="Image preview" class="hidden max-h-48 rounded shadow">
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit"
+      class="w-full bg-primary hover:bg-opacity-90 text-white font-medium py-2 px-4 rounded transition duration-200 flex items-center justify-center">
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+      </svg>
+      Upload Image
+    </button>
+  </form>
+
+  <!-- Divider -->
+  <hr class="my-6 border-t border-gray-200">
+</div>
+
+<!-- Image Preview Script -->
+<script>
+  const input = document.getElementById('img');
+  const preview = document.getElementById('preview');
+
+  input.addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();//to read a file FML 
+      reader.onload = function(e) {
+        preview.src = e.target.result;
+        preview.classList.remove('hidden');
+      }
+      reader.readAsDataURL(file);
+    }
+  });
+</script>
+{% endblock %}
