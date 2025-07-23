@@ -29,8 +29,8 @@ else:
 
 # ================== Configuration ==================
 # Paths
-train_dir = 'C:\\Users\\jauda\\Desktop\\SemesterProject\\dataset\\train'
-val_dir = 'C:\\Users\\jauda\\Desktop\\SemesterProject\\dataset\\validation'
+train_dir = 'dataset\\train'
+val_dir = 'dataset\\validation'
 
 # Hyperparameters
 #this is the input size for the mobilnetv2

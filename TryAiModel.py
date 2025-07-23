@@ -41,10 +41,10 @@ def predict_image(img_path):
         return f"Error: {str(e)}", 0
 
 # Example usage
-images=[r'c:\Users\jauda\Desktop\yalallalla\rust_1.jpeg',r'c:\Users\jauda\Desktop\yalallalla\lat eblight 97.jpg',r'c:\Users\jauda\Desktop\yalallalla\bacterial 97.jpeg',r'c:\Users\jauda\Desktop\yalallalla\coffee-rust 97.png',r'c:\Users\jauda\Desktop\yalallalla\Rustt 97.jpeg',r'c:\Users\jauda\Desktop\yalallalla\powderyy 97.jpeg',r'c:\Users\jauda\Desktop\yalallalla\healthy_97.jpeg']
+images=[r'Testing the project\rust_1.jpeg',r'c:\Users\jauda\Desktop\lat eblight 97.jpg',r'Testing the project\bacterial 97.jpeg',r'Testing the project\coffee-rust 97.png',r'Testing the project\Rustt 97.jpeg',r'Testing the project\powderyy 97.jpeg',r'Testing the project\healthy_97.jpeg']
 if __name__ == "__main__":
   
-    model_path = r"C:\Users\jauda\Desktop\SemesterProject\ID_2 new model 21 6 2025\best_model ID_2.h5" #rust 95 healthy 70 powdery 96 rust 96
+    model_path = r"\ID_2 new model 21 6 2025\best_model ID_2.h5" #rust 95 healthy 70 powdery 96 rust 96
     model = load_model(model_path)
     print(f"Model loaded from: {model_path}")
     
@@ -56,7 +56,7 @@ if __name__ == "__main__":
         
 
     print("-"*60)
-    model_path=r"c:\Users\jauda\Desktop\SemesterProject\ID_6 model Better\best_model.h5"
+    model_path=r"\ID_6 model Better\best_model.h5"
     model = load_model(model_path)
     print(f"Model loaded from: {model_path}")
     for i in images:

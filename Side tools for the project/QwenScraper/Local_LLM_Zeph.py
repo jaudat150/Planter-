@@ -9,7 +9,8 @@ if torch.cuda.is_available():
 
 # Model Setup
 #we can either use this or just use the model right from hugging face as model_name = "HuggingFaceH4/zephyr-7b-beta"
-model_name = r"C:\Users\jauda\.cache\huggingface\hub\models--HuggingFaceH4--zephyr-7b-beta\snapshots\892b3d7a7b1cf10c7a701c60881cd93df615734c"
+#set ur model in here
+model_name = r"C:\Users\example\.cache\huggingface\hub\models--HuggingFaceH4--zephyr-7b-beta\snapshots\722c3a7f7q1tf10c7a701c60881cd93df611221c"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 model = AutoModelForCausalLM.from_pretrained(
